@@ -431,6 +431,17 @@ body.dark footer {
   font-size: 0.95rem;
 }
 
+/* Optional close button */
+.close-notice {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
 .site-notice .close-notice {
   position: absolute;
   top: 50%;
