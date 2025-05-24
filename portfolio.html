@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volatile | Portfolio</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="volatile">Volatile</span>
+      <span class="separator">|</span>
+      <span class="solutions">Solutions</span>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+
+    <nav id="mobileNav">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><button id="themeToggle" class="btn theme-toggle">🌓</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="container">
+    <h2 data-animate>All Projects</h2>
+    <div class="portfolio-list">
+      <div class="project-card" data-animate>
+        <h3>HealthSync App</h3>
+        <p>AI-powered fitness tracker with motion analysis and social challenges.</p>
+        <a href="https://github.com/yourusername/healthsync" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>TrackItBudget</h3>
+        <p>Expense tracking app with CSV export and real-time tracking.</p>
+        <a href="https://github.com/yourusername/trackitbudget" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>Mula</h3>
+        <p>Minimalist money manager built for simplicity and speed.</p>
+        <a href="https://github.com/yourusername/mula" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>Virtual Pet</h3>
+        <p>A fun interactive virtual pet built using vanilla JS and DOM manipulation.</p>
+        <a href="https://github.com/yourusername/virtual-pet" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>Interactive Whiteboard</h3>
+        <p>Real-time drawing tool for brainstorming and visual thinking.</p>
+        <a href="https://github.com/yourusername/whiteboard" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>Expense Tracker</h3>
+        <p>Lightweight budget tracking application with export functionality.</p>
+        <a href="https://github.com/yourusername/expense-tracker" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>SmartLanding</h3>
+        <p>Conversion-focused landing page builder for small businesses.</p>
+        <a href="https://github.com/yourusername/smartlanding" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>FlexForm</h3>
+        <p>Dynamic form generator for surveys, polls, and lead collection.</p>
+        <a href="https://github.com/yourusername/flexform" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>InstaBuild</h3>
+        <p>Website scaffolding tool for freelancers and quick MVPs.</p>
+        <a href="https://github.com/yourusername/instabuild" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>BrandSpark</h3>
+        <p>Logo and branding toolkit powered by canvas and design APIs.</p>
+        <a href="https://github.com/yourusername/brandspark" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>ClientPortal</h3>
+        <p>Secure dashboard for clients to view deliverables, invoices, and project updates.</p>
+        <a href="https://github.com/yourusername/clientportal" target="_blank" class="btn">View on GitHub</a>
+      </div>
+      <div class="project-card" data-animate>
+        <h3>PitchDeckBuilder</h3>
+        <p>Drag-and-drop pitch deck creator tailored for startups and solopreneurs.</p>
+        <a href="https://github.com/yourusername/pitchdeckbuilder" target="_blank" class="btn">View on GitHub</a>
+      </div>
+    </div>
+    <div class="view-all-container" style="margin-top: 50px;">
+      <a href="index.html#portfolio" class="btn">← Back to Main Site</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Volatile Solutions. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('nav').classList.toggle('show');
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    const toggle = document.getElementById('themeToggle');
+    const root = document.body;
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') root.classList.add('dark');
+
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
