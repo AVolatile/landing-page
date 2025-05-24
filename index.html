@@ -5,60 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Volatile | Solutions</title>
   <link rel="stylesheet" href="main.css" />
-  <style>
-    .thank-you {
-      text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(135deg, #243447, #4d6d7c);
-      color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      animation: fadeInUp 1s ease forwards;
-      margin-top: 40px;
-    }
-
-    .thank-you h2 {
-      font-size: 2.75rem;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-
-    .thank-you p {
-      font-size: 1.2rem;
-      color: #d9e1e8;
-      margin-bottom: 30px;
-    }
-
-    #confettiCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9999;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .thank-you h2 {
-        font-size: 2rem;
-      }
-      .thank-you p {
-        font-size: 1rem;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -75,12 +21,20 @@
       <span class="separator">|</span>
       <span class="solutions">Solutions</span>
     </div>
-    <nav>
-      <ul class="nav-links">
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <nav id="mobileNav">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Home</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><button id="themeToggle" class="btn theme-toggle">🌓</button></li>
       </ul>
     </nav>
   </header>
@@ -144,7 +98,7 @@
   <section id="contact" class="container">
     <h2 data-animate>Contact Us</h2>
 
-    <form id="contactForm" class="fade-in" data-animate>
+    <form id="contactForm" data-animate>
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
       <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
@@ -165,8 +119,14 @@
     &copy; 2025 Volatile Solutions. All rights reserved.
   </footer>
 
-  <!-- Scroll Animations -->
+  <!-- Scripts -->
   <script>
+    // Mobile nav toggle
+    function toggleMenu() {
+      document.querySelector('nav').classList.toggle('show');
+    }
+
+    // Animate on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -175,10 +135,8 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-  </script>
 
-  <!-- Form Submission + Confetti -->
-  <script>
+    // Form handling + confetti
     const form = document.getElementById('contactForm');
     const thankYou = document.getElementById('thankYouMessage');
     const confettiCanvas = document.getElementById('confettiCanvas');
@@ -199,23 +157,20 @@
         confettiCanvas.style.display = 'block';
         startConfetti();
 
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 6000);
+        setTimeout(() => window.location.href = 'index.html', 6000);
       } catch (err) {
         alert("There was a problem sending your message. Please try again.");
       }
     });
 
     function startConfetti() {
-      const canvas = confettiCanvas;
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const ctx = confettiCanvas.getContext("2d");
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
 
       const confetti = Array.from({ length: 80 }).map(() => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * -canvas.height,
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * -confettiCanvas.height,
         r: Math.random() * 4 + 2,
         d: Math.random() * 3 + 2,
         color: ["#52ab98", "#ffffff", "#f5f7fa", "#2b7577"][Math.floor(Math.random() * 4)],
@@ -223,7 +178,7 @@
       }));
 
       function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
         confetti.forEach(c => {
           ctx.beginPath();
           ctx.fillStyle = c.color;
@@ -237,20 +192,30 @@
         confetti.forEach(c => {
           c.y += c.d;
           c.tilt += 0.05;
-          if (c.y > canvas.height) {
+          if (c.y > confettiCanvas.height) {
             c.y = -10;
-            c.x = Math.random() * canvas.width;
+            c.x = Math.random() * confettiCanvas.width;
           }
         });
       }
 
-      function animate() {
+      (function animate() {
         draw();
         requestAnimationFrame(animate);
-      }
-
-      animate();
+      })();
     }
+
+    // Dark mode toggle
+    const toggle = document.getElementById('themeToggle');
+    const root = document.body;
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') root.classList.add('dark');
+
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
   </script>
 
 </body>
