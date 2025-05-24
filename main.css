@@ -101,7 +101,8 @@ header {
 #hero h2 {
   font-size: 3rem;
   margin-bottom: 20px;
-  font-weight: 800;
+  font-weight: 700;
+  color: #cefff7; /* Light mode specific */
 }
 
 #hero p {
@@ -335,6 +336,9 @@ body.dark #hero {
   color: #ffffff;
 }
 
+body.dark #hero h2 {
+  color: #6aeed1; /* Dark mode override */
+}
 body.dark #hero p {
   color: #bbbbbb;
 }
