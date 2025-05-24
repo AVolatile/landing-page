@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volatile | Solutions</title>
+  <link rel="stylesheet" href="main.css" />
+  <style>
+    .thank-you {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #243447, #4d6d7c);
+      color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease forwards;
+      margin-top: 40px;
+    }
+
+    .thank-you h2 {
+      font-size: 2.75rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .thank-you p {
+      font-size: 1.2rem;
+      color: #d9e1e8;
+      margin-bottom: 30px;
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .thank-you h2 {
+        font-size: 2rem;
+      }
+      .thank-you p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Notice -->
+  <div class="site-notice" id="siteNotice">
+    <p>🚧 We're currently working on this website. Thanks for your patience!</p>
+    <span class="close-notice" onclick="document.getElementById('siteNotice').style.display='none'">&times;</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span class="volatile">Volatile</span>
+      <span class="separator">|</span>
+      <span class="solutions">Solutions</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <h2>Build Your Dream Website</h2>
+      <p>Elegant. Responsive. Modern. Designed to impress and built to perform.</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="container">
+    <h2 data-animate>Why Choose Us</h2>
+    <div class="features">
+      <div class="feature-card" data-animate>
+        <h3>Speed Optimized</h3>
+        <p>Lightning-fast performance out of the box for every device.</p>
+      </div>
+      <div class="feature-card" data-animate>
+        <h3>Fully Responsive</h3>
+        <p>Beautiful on desktop, tablet, and mobile without compromise.</p>
+      </div>
+      <div class="feature-card" data-animate>
+        <h3>Built to Convert</h3>
+        <p>Crafted to drive clicks, engagement, and results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="container">
+    <h2 data-animate>Our Services</h2>
+    <ul class="services-list">
+      <li data-animate>
+        <h3>Web Design</h3>
+        <p>Clean and creative visual layouts tailored to your brand.</p>
+      </li>
+      <li data-animate>
+        <h3>Development</h3>
+        <p>Robust, scalable code solutions for any business goal.</p>
+      </li>
+      <li data-animate>
+        <h3>Brand Strategy</h3>
+        <p>We help define your identity and voice online.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Elevate Your Online Presence?</h2>
+      <a href="#contact" class="btn">Let's Talk</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2 data-animate>Contact Us</h2>
+
+    <form id="contactForm" class="fade-in" data-animate>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div id="thankYouMessage" class="thank-you" style="display: none;">
+      <h2>Thank You!</h2>
+      <p>Your message has been sent. We’ll be in touch shortly.</p>
+      <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+
+    <canvas id="confettiCanvas" style="display: none;"></canvas>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Volatile Solutions. All rights reserved.
+  </footer>
+
+  <!-- Scroll Animations -->
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Form Submission + Confetti -->
+  <script>
+    const form = document.getElementById('contactForm');
+    const thankYou = document.getElementById('thankYouMessage');
+    const confettiCanvas = document.getElementById('confettiCanvas');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      try {
+        await fetch('https://formspree.io/f/manozggr', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        form.style.display = 'none';
+        thankYou.style.display = 'block';
+        confettiCanvas.style.display = 'block';
+        startConfetti();
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 6000);
+      } catch (err) {
+        alert("There was a problem sending your message. Please try again.");
+      }
+    });
+
+    function startConfetti() {
+      const canvas = confettiCanvas;
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const confetti = Array.from({ length: 80 }).map(() => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        r: Math.random() * 4 + 2,
+        d: Math.random() * 3 + 2,
+        color: ["#52ab98", "#ffffff", "#f5f7fa", "#2b7577"][Math.floor(Math.random() * 4)],
+        tilt: Math.random() * 10 - 5
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confetti.forEach(c => {
+          ctx.beginPath();
+          ctx.fillStyle = c.color;
+          ctx.ellipse(c.x, c.y, c.r, c.r * 0.6, c.tilt, 0, 2 * Math.PI);
+          ctx.fill();
+        });
+        update();
+      }
+
+      function update() {
+        confetti.forEach(c => {
+          c.y += c.d;
+          c.tilt += 0.05;
+          if (c.y > canvas.height) {
+            c.y = -10;
+            c.x = Math.random() * canvas.width;
+          }
+        });
+      }
+
+      function animate() {
+        draw();
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+  </script>
+
+</body>
+</html>
