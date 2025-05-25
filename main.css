@@ -822,3 +822,30 @@ body.dark .chatbot-msg.suggested {
   background: #444;
   color: #ddd;
 }
+/* === Chatbot Intro Popup === */
+.chatbot-intro-bubble {
+  position: fixed;
+  bottom: 90px;
+  right: 28px;
+  background: #2b7577;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.chatbot-intro-bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.dark .chatbot-intro-bubble {
+  background: #444;
+  color: #f1f1f1;
+}
