@@ -7,19 +7,24 @@
   <link rel="stylesheet" href="main.css" />
 </head>
 
-<!-- Chatbot -->
-<div class="chatbot-widget" id="chatbotWidget">
+<!-- Chatbot Bubble Toggle -->
+<div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
+  💬
+</div>
+
+<!-- Chatbot Widget -->
+<div class="chatbot-widget" id="chatbotWidget" style="display: none;">
   <div class="chatbot-header" onclick="toggleChatbot()">
     <span>💬 Chat with Ava</span>
     <span class="chatbot-toggle-icon">▼</span>
   </div>
-  <div class="chatbot-body" id="chatbotBody" style="display: none;">
+  <div class="chatbot-body" id="chatbotBody">
     <div class="chatbot-msg bot">Hi! I’m Ava, your digital assistant!</div>
     <div class="chatbot-msg bot suggested" onclick="sendQuestion('What do you do?')">👉 What do you do?</div>
     <div class="chatbot-msg bot suggested" onclick="sendQuestion('How does this help me?')">👉 How does this help me?</div>
     <div class="chatbot-msg bot suggested" onclick="sendQuestion('Do you make mobile-friendly sites?')">👉 Do you make mobile-friendly sites?</div>
   </div>
-  <div class="chatbot-input" style="display: none;">
+  <div class="chatbot-input">
     <input type="text" id="chatbotInput" placeholder="Type a question..." />
     <button onclick="sendChat()">Send</button>
   </div>
@@ -293,23 +298,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function toggleChatbot() {
   const widget = document.getElementById('chatbotWidget');
-  const body = document.getElementById('chatbotBody');
-  const input = document.querySelector('.chatbot-input');
+  const bubble = document.getElementById('chatbotBubble');
   const icon = document.querySelector('.chatbot-toggle-icon');
 
-  document.getElementById('chatbotIntro')?.classList.remove('show');
-
-  if (body.style.display === 'none') {
-    body.style.display = 'flex';
-    input.style.display = 'flex';
+  if (widget.style.display === 'none') {
+    widget.style.display = 'flex';
+    bubble.style.display = 'none';
     icon.textContent = '▲';
   } else {
-    body.style.display = 'none';
-    input.style.display = 'none';
+    widget.style.display = 'none';
+    bubble.style.display = 'flex';
     icon.textContent = '▼';
   }
 }
-
 
 function sendChat() {
   const input = document.getElementById('chatbotInput');
