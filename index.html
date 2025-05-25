@@ -6,6 +6,25 @@
   <title>Volatile | Solutions</title>
   <link rel="stylesheet" href="main.css" />
 </head>
+
+<!-- Chatbot -->
+<div class="chatbot-widget" id="chatbotWidget">
+  <div class="chatbot-header" onclick="toggleChatbot()">
+    <span>💬 Chat with Ava</span>
+    <span class="chatbot-toggle-icon">▲</span>
+  </div>
+  <div class="chatbot-body" id="chatbotBody">
+    <div class="chatbot-msg bot">Hi! I’m Ava, your digital assistant!</div>
+    <div class="chatbot-msg bot suggested" onclick="sendQuestion('What do you do?')">What do you do?</div>
+    <div class="chatbot-msg bot suggested" onclick="sendQuestion('How does this help me?')">How does this help me?</div>
+    <div class="chatbot-msg bot suggested" onclick="sendQuestion('Do you make mobile-friendly sites?')">Do you make mobile-friendly sites?</div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbotInput" placeholder="Type a question..." />
+    <button onclick="sendChat()">Send</button>
+  </div>
+</div>
+
 <body>
 
 <div class="site-notice" id="homeNotice">
@@ -256,6 +275,86 @@
       root.classList.toggle('dark');
       localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
     });
+
+function toggleChatbot() {
+  const widget = document.getElementById('chatbotWidget');
+  const body = document.getElementById('chatbotBody');
+  const input = document.querySelector('.chatbot-input');
+  const icon = document.querySelector('.chatbot-toggle-icon');
+
+  if (body.style.display === 'none') {
+    body.style.display = 'flex';
+    input.style.display = 'flex';
+    icon.textContent = '▲';
+  } else {
+    body.style.display = 'none';
+    input.style.display = 'none';
+    icon.textContent = '▼';
+  }
+}
+
+
+function sendChat() {
+  const input = document.getElementById('chatbotInput');
+  const message = input.value.trim();
+  if (!message) return;
+  appendMessage('user', message);
+  getBotResponse(message);
+  input.value = '';
+}
+
+function sendQuestion(msg) {
+  appendMessage('user', msg);
+  getBotResponse(msg);
+}
+
+function appendMessage(sender, text) {
+  const msg = document.createElement('div');
+  msg.className = `chatbot-msg ${sender}`;
+  msg.textContent = text;
+  document.getElementById('chatbotBody').appendChild(msg);
+  scrollChatToBottom();
+}
+
+function scrollChatToBottom() {
+  const body = document.getElementById('chatbotBody');
+  body.scrollTop = body.scrollHeight;
+}
+
+function getBotResponse(input) {
+  const msg = input.toLowerCase();
+  let reply = "I'm here to help! Could you clarify that?";
+
+  if (msg.includes("what do you do")) {
+    reply = "We specialize in designing and developing modern, responsive websites and digital branding tailored to help businesses grow.";
+  } else if (msg.includes("how does") || msg.includes("help")) {
+    reply = "Our work gives your business a clean, professional online presence that converts visitors into customers.";
+  } else if (msg.includes("price") || msg.includes("cost")) {
+    reply = "Our pricing is flexible based on your goals. Fill out the contact form and we'll send you a custom quote!";
+  } else if (msg.includes("mobile") || msg.includes("responsive")) {
+    reply = "Absolutely! All our websites are fully responsive — optimized for mobile, tablet, and desktop.";
+  } else if (msg.includes("why choose") || msg.includes("benefits")) {
+    reply = "We're performance-focused, design-driven, and passionate about helping your business succeed online.";
+  } else if (msg.includes("portfolio") || msg.includes("examples")) {
+    reply = "Sure! Scroll up to the Portfolio section to see some of our recent projects.";
+  }
+
+  appendMessage('bot', reply);
+
+  if (!msg.includes("contact") && !msg.includes("email")) {
+    setTimeout(() => {
+      appendMessage('bot', "👋 If you're interested, feel free to reach out via our contact form below!");
+      appendMessage('bot', "👇 Click the button to get in touch.");
+      const contactBtn = document.createElement('div');
+      contactBtn.className = 'chatbot-msg bot suggested';
+      contactBtn.textContent = "📬 Go to Contact";
+      contactBtn.onclick = () => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('chatbotBody').appendChild(contactBtn);
+      scrollChatToBottom();
+    }, 800);
+  }
+}
+
   </script>
 
 </body>
