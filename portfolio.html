@@ -31,15 +31,100 @@
   </header>
 <div id="maintenanceModal" class="modal">
 <div class="site-notice" id="profileNotice">
-  🔧 Profile page is under maintenance. Some projects may be temporarily unavailable.
+  🔧 Portfolio page is under maintenance. Some projects may be temporarily unavailable.
   <span class="close-notice" onclick="document.getElementById('profileNotice').style.display='none'">&times;</span>
 </div>
 
-<section class="container">
-  <h2 data-animate>All Projects</h2>
-  <div class="portfolio-list">
+<section id="portfolio" class="container">
+  <h2>Project Showcase</h2>
 
-    <div class="project-card" data-animate>
+  <div class="project-filters">
+    <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+    <button class="filter-btn" onclick="filterProjects('ui')">UI/UX</button>
+    <button class="filter-btn" onclick="filterProjects('fintech')">FinTech</button>
+    <button class="filter-btn" onclick="filterProjects('tools')">Tools</button>
+    <button class="filter-btn" onclick="filterProjects('social')">Social</button>
+    <button class="filter-btn" onclick="filterProjects('marketing')">Marketing</button>
+    <button class="filter-btn" onclick="filterProjects('ecommerce')">E-commerce</button>
+    <button class="filter-btn" onclick="filterProjects('entertainment')">Entertainment</button>
+    <button class="filter-btn" onclick="filterProjects('productivity')">Productivity</button>
+  </div>
+
+  <div class="portfolio-list">
+    <!-- Existing Projects -->
+    <div class="project-card" data-animate data-category="fintech">
+      <h3>Finance Dashboard</h3>
+      <p>Responsive admin dashboard with data visualization, export features, and clean enterprise UI.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="fintech">
+      <h3>Benefits Comparison Tool</h3>
+      <p>Interactive app for comparing 401(k), Roth IRA, and HSA growth with charts and calculators.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="ui">
+      <h3>Secure Auth Portal</h3>
+      <p>Modern login/registration system with token-based auth, protected routes, and form validation.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="tools">
+      <h3>Accessibility Audit Helper</h3>
+      <p>Tool that scans your webpage and provides basic WCAG-based accessibility feedback.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="tools">
+      <h3>Ticket Management System</h3>
+      <p>Kanban-style app for creating, assigning, and updating support or project tickets.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="ui">
+      <h3>Multistep Form Wizard</h3>
+      <p>Interactive onboarding flow with form validation, step saving, and progress indicator.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="tools">
+      <h3>Real-Time Notification Center</h3>
+      <p>Notification UI with read/unread states, polling/WebSocket simulation, and global badge counter.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="fintech">
+      <h3>Investment Goal Calculator</h3>
+      <p>Calculates investment growth over time using compound interest with visual projections.</p>
+      <div class="button-group">
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-animate data-category="fintech">
       <h3>CongoCash</h3>
       <p>The safest and fastest app for cryptocurrency. Secure solutions for digital assets and money easily</p>
       <div class="button-group">
@@ -48,7 +133,7 @@
       </div>
     </div>
 
-    <div class="project-card" data-animate>
+    <div class="project-card" data-animate data-category="marketing">
       <h3>LaHotel</h3>
       <p>The most elegant and effortless way to book luxury stays. Discover comfort, cuisine - crafted for your perfect getaway.</p>
       <div class="button-group">
@@ -57,7 +142,7 @@
       </div>
     </div>
 
-    <div class="project-card" data-animate>
+    <div class="project-card" data-animate data-category="fintech">
       <h3>Mula</h3>
       <p>Minimalist money manager built for simplicity and speed.</p>
       <div class="button-group">
@@ -66,148 +151,92 @@
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>Virtual Pet</h3>
-      <p>A fun interactive virtual pet built using vanilla JS and DOM manipulation.</p>
+    <!-- New Projects -->
+    <!-- E-commerce -->
+    <div class="project-card" data-animate data-category="ecommerce">
+      <h3>Product Showcase</h3>
+      <p>Responsive product listing with sorting, filtering, and pagination for a seamless shopping experience.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/virtual-pet" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/virtual-pet" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>Interactive Whiteboard</h3>
-      <p>Real-time drawing tool for brainstorming and visual thinking.</p>
+    <div class="project-card" data-animate data-category="ecommerce">
+      <h3>Shopping Cart</h3>
+      <p>Interactive shopping cart with dynamic product addition, total calculation, and checkout flow.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/whiteboard" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/whiteboard" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>Expense Tracker</h3>
-      <p>Lightweight budget tracking application with export functionality.</p>
+    <div class="project-card" data-animate data-category="ecommerce">
+      <h3>Order Management System</h3>
+      <p>Admin dashboard for managing orders, shipping statuses, and customer details.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/expense-tracker" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/expense-tracker" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>SmartLanding</h3>
-      <p>Conversion-focused landing page builder for small businesses.</p>
+    <!-- Entertainment -->
+    <div class="project-card" data-animate data-category="entertainment">
+      <h3>Movie Review App</h3>
+      <p>App for browsing, rating, and reviewing movies with user-generated content.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/smartlanding" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/smartlanding" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>FlexForm</h3>
-      <p>Dynamic form generator for surveys, polls, and lead collection.</p>
+    <div class="project-card" data-animate data-category="entertainment">
+      <h3>Music Player</h3>
+      <p>A modern music player with playlists, shuffle mode, and album artwork.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/flexform" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/flexform" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>InstaBuild</h3>
-      <p>Website scaffolding tool for freelancers and quick MVPs.</p>
+    <div class="project-card" data-animate data-category="entertainment">
+      <h3>Streaming Dashboard</h3>
+      <p>Real-time dashboard for managing and monitoring live streaming events.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/instabuild" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/instabuild" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>BrandSpark</h3>
-      <p>Logo and branding toolkit powered by canvas and design APIs.</p>
+    <!-- Productivity -->
+    <div class="project-card" data-animate data-category="productivity">
+      <h3>Task Manager</h3>
+      <p>Task management app with project deadlines, priority levels, and progress tracking.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/brandspark" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/brandspark" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>ClientPortal</h3>
-      <p>Secure dashboard for clients to view deliverables, invoices, and project updates.</p>
+    <div class="project-card" data-animate data-category="productivity">
+      <h3>Pomodoro Timer</h3>
+      <p>Simple timer for productivity, using the Pomodoro technique to break tasks into intervals.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/clientportal" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/clientportal" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
 
-    <div class="project-card" data-animate>
-      <h3>PitchDeckBuilder</h3>
-      <p>Drag-and-drop pitch deck creator tailored for startups and solopreneurs.</p>
+    <div class="project-card" data-animate data-category="productivity">
+      <h3>Note-Taking App</h3>
+      <p>App for organizing and storing notes, with tags, search functionality, and synchronization.</p>
       <div class="button-group">
-        <a href="https://github.com/yourusername/pitchdeckbuilder" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/pitchdeckbuilder" target="_blank" class="btn">View Live Site</a>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn">Live Demo</a>
       </div>
     </div>
-
-    <div class="project-card" data-animate>
-      <h3>DriveAway Rentals</h3>
-      <p>Fully functional car rental web app with booking calendar and admin dashboard.</p>
-      <div class="button-group">
-        <a href="https://github.com/yourusername/driveaway-rentals" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/driveaway-rentals" target="_blank" class="btn">View Live Site</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-animate>
-      <h3>StayEase Booking</h3>
-      <p>Hotel booking platform with room search, availability, and payment integration.</p>
-      <div class="button-group">
-        <a href="https://github.com/yourusername/stayease-booking" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/stayease-booking" target="_blank" class="btn">View Live Site</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-animate>
-      <h3>CafeDelight Website</h3>
-      <p>Modern cafe website with menu display, online ordering, and local SEO focus.</p>
-      <div class="button-group">
-        <a href="https://github.com/yourusername/cafedelight-site" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/cafedelight-site" target="_blank" class="btn">View Live Site</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-animate>
-      <h3>AutoFix Garage</h3>
-      <p>Auto repair service website with scheduling form and real-time chat support.</p>
-      <div class="button-group">
-        <a href="https://github.com/yourusername/autofix-garage" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/autofix-garage" target="_blank" class="btn">View Live Site</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-animate>
-      <h3>Portfolio Pro</h3>
-      <p>Interactive personal portfolio template with animations, sections, and contact form.</p>
-      <div class="button-group">
-        <a href="https://github.com/yourusername/portfolio-pro" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/portfolio-pro" target="_blank" class="btn">View Live Site</a>
-      </div>
-    </div>
-
-    <div class="project-card" data-animate>
-      <h3>BizBoost Agency</h3>
-      <p>Small business digital agency site offering web and brand services with case studies.</p>
-      <div class="button-group">
-        <a href="https://github.com/yourusername/bizboost-agency" target="_blank" class="btn">View on GitHub</a>
-        <a href="https://yourusername.github.io/bizboost-agency" target="_blank" class="btn">View Live Site</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="view-all-container" style="margin-top: 50px;">
-    <a href="index.html#portfolio" class="btn">← Back to Main Site</a>
   </div>
 </section>
-
 
   <footer>
     &copy; 2025 Volatile Solutions. All rights reserved.
@@ -238,6 +267,16 @@
       root.classList.toggle('dark');
       localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
     });
+      function filterProjects(category) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const projects = document.querySelectorAll('.project-card');
+    projects.forEach(card => {
+      const cat = card.getAttribute('data-category');
+      card.style.display = (category === 'all' || cat === category) ? 'block' : 'none';
+    });
+  }
   </script>
 </body>
 </html>
